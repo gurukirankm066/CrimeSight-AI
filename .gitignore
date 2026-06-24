@@ -1,0 +1,4 @@
+node_modules/
+*.log
+catalyst-debug.log
+karnataka_synthetic_crime_records_100k.csv

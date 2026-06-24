@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "csv-parse": "^7.0.0",
+    "zcatalyst-sdk-node": "^3.4.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "functions": {
+    "targets": [
+      "crime_sight_ai_function"
+    ],
+    "ignore": [],
+    "source": "functions"
+  },
+  "slate": [
+    {
+      "name": "crimesight-ui",
+      "source": "/Users/architham/CrimeSightAI/crimesight-ui"
+    }
+  ]
+}
