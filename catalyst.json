@@ -1,7 +1,9 @@
 {
   "functions": {
     "targets": [
-      "crime_sight_ai_function"
+      "crime_sight_ai_function",
+      "crime_sight_ai_function2",
+      "crime_sight_ai_function3"
     ],
     "ignore": [],
     "source": "functions"

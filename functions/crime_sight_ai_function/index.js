@@ -1,39 +1,32 @@
-const catalyst = require('zcatalyst-sdk-node');
+const catalyst = require("zcatalyst-sdk-node");
 
 module.exports = async (context, basicIO) => {
     try {
-
         const app = catalyst.initialize(context);
         const zcql = app.zcql();
 
-        const accusedName = "Girish Kulkarni";
-
         const query = `
-            SELECT Accused_Name,
-                   District,
-                   Crime_Type,
-                   Weapon_Used,
-                   Case_Status
+            SELECT District, Crime_Type, COUNT(FIR_Number) as crime_count
             FROM crime_records
-            WHERE Accused_Name = '${accusedName}'
-            LIMIT 100
+            GROUP BY District, Crime_Type
+            LIMIT 300 OFFSET 0
         `;
 
         const result = await zcql.executeZCQLQuery(query);
 
-        basicIO.write(JSON.stringify({
-            status: "success",
-            records_found: result.length,
-            data: result
-        }));
+        const crimeTypes = {};
+        result.forEach((item) => {
+            const row = item.crime_records;
+            if (row.District && row.District !== "d") {
+                if (!crimeTypes[row.District]) crimeTypes[row.District] = {};
+                crimeTypes[row.District][row.Crime_Type] = parseInt(row["COUNT(FIR_Number)"]);
+            }
+        });
+
+        basicIO.write(JSON.stringify(crimeTypes));
 
     } catch (err) {
-
-        basicIO.write(JSON.stringify({
-            status: "error",
-            message: err.message
-        }));
-
+        basicIO.write(JSON.stringify({ error: err.message }));
     }
 
     context.close();
