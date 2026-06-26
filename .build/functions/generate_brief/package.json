@@ -1,0 +1,10 @@
+{
+	"name": "generate_brief",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "gurukirankm70@gmail.com",
+	"dependencies": {
+		"@anthropic-ai/sdk": "^0.106.0",
+		"zcatalyst-sdk-node": "latest"
+	}
+}

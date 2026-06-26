@@ -43,6 +43,7 @@ function App() {
   const [crimeTypes, setCrimeTypes] = useState({});
   const [yearSummary, setYearSummary] = useState({});
   const [selectedCrimeType, setSelectedCrimeType] = useState("All");
+  const [morningBrief, setMorningBrief] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,6 +53,7 @@ function App() {
         setDistrictSummary(data.districtSummary);
         setCrimeTypes(data.crimeTypes);
         setYearSummary(data.yearSummary);
+        setMorningBrief(data.morningBrief);
       })
       .catch(err => console.error("FETCH ERROR:", err));
   }, []);
@@ -85,6 +87,21 @@ function App() {
         justifyContent: "space-between",
         flexShrink: 0,
       }}>
+        {/* Hotspot Alert Banner */}
+        {top5[0] && top5[0][1] > 10000 && (
+          <div style={{
+            background: "#e94560",
+            color: "white",
+            padding: "10px 24px",
+            fontSize: "13px",
+            fontWeight: "bold",
+            textAlign: "center",
+            flexShrink: 0,
+            animation: "pulse 1.5s infinite",
+          }}>
+            🚨 HOTSPOT ALERT — {top5[0][0]} has crossed {top5[0][1].toLocaleString()} crimes. Immediate attention required.
+          </div>
+        )}
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <span style={{ fontSize: "24px" }}>🚨</span>
           <div>
@@ -119,6 +136,20 @@ function App() {
           >
             📋 Case Tracker
           </button>
+          <button
+            onClick={() => navigate("/suspect-network")}
+            style={{
+              background: "#0f3460",
+              color: "white",
+              border: "1px solid #e94560",
+              padding: "8px 16px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "13px",
+            }}
+          >
+            🕸️ Suspect Network
+          </button>
         </div>
       </div>
 
@@ -135,6 +166,17 @@ function App() {
           overflowY: "auto",
           flexShrink: 0,
         }}>
+
+          {/* AI Morning Brief */}
+          {morningBrief && (
+            <div style={{ marginBottom: "20px", background: "#16213e", border: "1px solid #e94560", borderRadius: "6px", padding: "14px" }}>
+              <div style={{ color: "#e94560", fontWeight: "bold", fontSize: "12px", marginBottom: "10px", letterSpacing: "1px" }}>🤖 AI MORNING BRIEF</div>
+              {morningBrief.split("\n").filter(l => l.trim()).map((line, i) => (
+                <div key={i} style={{ fontSize: "11px", color: "#ddd", lineHeight: "1.6", marginBottom: "6px" }}>{line}</div>
+              ))}
+            </div>
+          )}
+
           {/* Filter */}
           <div style={{ marginBottom: "20px" }}>
             <h4 style={{ color: "#e94560", marginBottom: "8px" }}>🔍 Filter by Crime Type</h4>
@@ -246,7 +288,7 @@ function App() {
                 : [];
 
               return (
-                <Marker key={district} position={coords} icon={icon}>
+                <Marker key={district} position={coords} icon={icon} eventHandlers={{ click: () => navigate(`/district/${encodeURIComponent(district)}`) }}>
                   <Popup>
                     <div style={{ minWidth: "180px" }}>
                       <h3 style={{ margin: "0 0 6px 0" }}>{district}</h3>

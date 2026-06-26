@@ -1,0 +1,11 @@
+{
+	"deployment": {
+		"name": "get_victim_analysis",
+		"stack": "node24",
+		"type": "advancedio",
+		"env_variables": {}
+	},
+	"execution": {
+		"main": "index.js"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"deployment": {
+		"name": "get_district_dashboard",
+		"stack": "node24",
+		"type": "advancedio",
+		"env_variables": {}
+	},
+	"execution": {
+		"main": "index.js"
+	}
+}

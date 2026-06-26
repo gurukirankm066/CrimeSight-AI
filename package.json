@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "csv-parse": "^7.0.0",
+    "jspdf": "^4.2.1",
+    "react-cytoscapejs": "^2.0.0",
     "react-router-dom": "^7.18.0",
     "zcatalyst-sdk-node": "^3.4.0"
   }

@@ -1,0 +1,9 @@
+{
+	"name": "get_repeat_offenders",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "gurukirankm70@gmail.com",
+	"dependencies": {
+		"zcatalyst-sdk-node": "latest"
+	}
+}

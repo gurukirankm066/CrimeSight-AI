@@ -1,0 +1,11 @@
+{
+	"deployment": {
+		"name": "get_network_graph",
+		"stack": "node24",
+		"type": "advancedio",
+		"env_variables": {}
+	},
+	"execution": {
+		"main": "index.js"
+	}
+}
