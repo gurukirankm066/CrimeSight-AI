@@ -1,0 +1,7 @@
+./node_modules/nitro/dist/types/index.d.mts:   * export default defineNitroConfig({
+./node_modules/nitro/dist/types/index.d.mts: * `defineNitroConfig()`.
+./node_modules/nitro/dist/_chunks/nitro.mjs:	globalThis.defineNitroConfig = globalThis.defineNitroConfig || ((c) => c);
+./node_modules/nitro/dist/runtime/config.d.mts:export { defineConfig as defineNitroConfig };
+./node_modules/nitro/dist/runtime/config.mjs:export { defineConfig as defineNitroConfig };
+./node_modules/nitro/dist/docs/1.deploy/2.providers/21.vercel.md:export default defineNitroConfig({
+./node_modules/nitro/dist/docs/0.docs/15.migration.md:-- import { defineNitroConfig } from "nitropack/config"

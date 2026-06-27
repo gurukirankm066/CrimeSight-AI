@@ -1,0 +1,26 @@
+{
+  "functions": {
+    "targets": [
+      "crime_sight_ai_function",
+      "crime_sight_ai_function2",
+      "crime_sight_ai_function3",
+      "generate_brief",
+      "trigger_morning_brief",
+      "get_officer_profile",
+      "get_network_graph",
+      "get_district_dashboard",
+      "get_repeat_offenders",
+      "get_victim_analysis",
+      "upload_evidence",
+      "generate_ai_summary"
+    ],
+    "ignore": [],
+    "source": "functions"
+  },
+  "slate": [
+    {
+      "name": "lovable-ui",
+      "source": "/Users/architham/CrimeSightAI/lovable-ui"
+    }
+  ]
+}

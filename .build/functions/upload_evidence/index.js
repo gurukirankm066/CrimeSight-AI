@@ -16,7 +16,8 @@ module.exports = async (req, res) => {
 	// CORS
 	if (req.method === "OPTIONS") {
 		res.writeHead(204, {
-			"Access-Control-Allow-Origin": "http://localhost:8080",
+			"Access-Control-Allow-Origin": "http://localhost:3000",
+			"Access-Control-Allow-Credentials": "true",
 			"Access-Control-Allow-Methods": "GET,POST,OPTIONS",
 			"Access-Control-Allow-Headers": "*",
 		});
@@ -27,7 +28,7 @@ module.exports = async (req, res) => {
 	if (req.method === "GET") {
 		res.writeHead(200, {
 			"Content-Type": "application/json",
-			"Access-Control-Allow-Origin": "http://localhost:8080",
+			"Access-Control-Allow-Origin": "http://localhost:3000",
 		});
 
 		return res.end(
@@ -93,7 +94,7 @@ module.exports = async (req, res) => {
 					console.log("UPLOAD SUCCESS");
 					console.log(uploadResult);
 
-					// OCR
+					// Test Zia connection
 					console.log("Testing Zia connection...");
 
 					const response = await zia.getKeywordExtraction([
@@ -102,16 +103,17 @@ module.exports = async (req, res) => {
 
 					console.log("ZIA RESPONSE:");
 					console.log(JSON.stringify(response, null, 2));
-					console.log(JSON.stringify(ocrResult, null, 2));
 
-					if (fs.existsSync(tempFile)) {
+					// Delete temp file
+					if (tempFile && fs.existsSync(tempFile)) {
 						fs.unlinkSync(tempFile);
 					}
 
 					res.writeHead(200, {
 						"Content-Type": "application/json",
-						"Access-Control-Allow-Origin": "http://localhost:8080",
+						"Access-Control-Allow-Origin": "http://localhost:3000",
 					});
+
 					return res.end(
 						JSON.stringify({
 							success: true,
@@ -120,8 +122,9 @@ module.exports = async (req, res) => {
 							zia: response,
 						})
 					);
+
 				} catch (err) {
-					console.error("UPLOAD/OCR ERROR");
+					console.error("UPLOAD ERROR");
 					console.error(err);
 
 					if (tempFile && fs.existsSync(tempFile)) {
@@ -130,7 +133,7 @@ module.exports = async (req, res) => {
 
 					res.writeHead(500, {
 						"Content-Type": "application/json",
-						"Access-Control-Allow-Origin": "http://localhost:8080",
+						"Access-Control-Allow-Origin": "http://localhost:3000",
 					});
 
 					return res.end(
@@ -148,7 +151,7 @@ module.exports = async (req, res) => {
 
 			res.writeHead(500, {
 				"Content-Type": "application/json",
-				"Access-Control-Allow-Origin": "http://localhost:8080",
+				"Access-Control-Allow-Origin": "http://localhost:3000",
 			});
 
 			res.end(
@@ -160,12 +163,14 @@ module.exports = async (req, res) => {
 		});
 
 		req.pipe(bb);
+
 	} catch (err) {
 		console.error(err);
 
-		res.writeHead(500, {
+		res.writeHead(200, {
 			"Content-Type": "application/json",
-			"Access-Control-Allow-Origin": "http://localhost:8080",
+			"Access-Control-Allow-Origin": "http://localhost:3000",
+			"Access-Control-Allow-Credentials": "true",
 		});
 
 		res.end(

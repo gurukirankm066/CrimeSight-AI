@@ -17,10 +17,13 @@
     "ignore": [],
     "source": "functions"
   },
-  "slate": [
+  "appsail": [
     {
-      "name": "crimesight-ui",
-      "source": "/Users/architham/CrimeSightAI/crimesight-ui"
+      "source": "frontend",
+      "name": "CrimeSightAI"
     }
-  ]
+  ],
+  "client": {
+    "source": "client"
+  }
 }

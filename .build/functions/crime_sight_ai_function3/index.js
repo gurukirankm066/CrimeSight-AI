@@ -21,8 +21,9 @@ async function fetchAllRows(zcql, baseQuery) {
 
 module.exports = async (req, res) => {
 
-	res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+	res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
 	res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+	res.setHeader("Access-Control-Allow-Credentials", "true");
 	res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
 	if (req.method === "OPTIONS") {

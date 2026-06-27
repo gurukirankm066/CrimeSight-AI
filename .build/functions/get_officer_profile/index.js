@@ -2,7 +2,8 @@ const catalyst = require("zcatalyst-sdk-node");
 
 module.exports = async (req, res) => {
 	// ---------------- CORS ----------------
-	res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+	res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+	res.setHeader("Access-Control-Allow-Credentials", "true");
 	res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 	res.setHeader(
 		"Access-Control-Allow-Headers",

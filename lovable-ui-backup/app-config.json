@@ -1,0 +1,10 @@
+{
+	"command": "node dist/server/server.js",
+	"build_path": ".",
+	"stack": "node24",
+	"memory": 512,
+	"env_variables": {},
+	"scripts": {
+		"build": "npm install && npm run build"
+	}
+}

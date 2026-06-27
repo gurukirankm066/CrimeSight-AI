@@ -2,19 +2,15 @@
 
 module.exports = async (req, res) => {
 
-	if (req.method === "GET") {
-		res.writeHead(200, {
-			"Content-Type": "application/json"
-		});
+	res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+	res.setHeader("Access-Control-Allow-Credentials", "true");
+	res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+	res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-		return res.end(
-			JSON.stringify({
-				success: true,
-				message: "AI Summary function is working."
-			})
-		);
+	if (req.method === "OPTIONS") {
+		res.writeHead(204);
+		return res.end();
 	}
 
-	res.writeHead(405);
-	res.end("Method Not Allowed");
+	// existing code continues...
 };
